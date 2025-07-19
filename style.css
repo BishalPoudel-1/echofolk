@@ -1,0 +1,479 @@
+/* Reset and basic styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 10px;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(to bottom right, #f97316, #ef4444);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.logo-icon i {
+  color: white;
+  font-size: 18px;
+}
+
+.logo-container:hover .logo-icon {
+  transform: scale(1.1) rotate(-3deg);
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #ea580c, #dc2626);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+nav a {
+  margin-right: 20px;
+  font-weight: 500;
+  color: #333;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Login Button */
+.buttons .login {
+  background-color: #fff;
+  border: 2px solid #ff5722;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.buttons .login a {
+  color: #ff5722;
+  font-weight: 600;
+}
+
+.buttons .login:hover {
+  background-color: #ff5722;
+}
+
+.buttons .login:hover a {
+  color: white;
+}
+
+/* Join Now Button */
+.buttons .join {
+  background-color: #ff5722;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.buttons .join a {
+  color: white;
+  font-weight: 600;
+}
+
+.buttons .join:hover {
+  background-color: #e64a19;
+}
+
+.buttons .join:hover a {
+  color: white;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #fff2ed, #ffe5df);
+  animation: fadeUp 0.6s ease-in-out both;
+}
+
+.hero .badge {
+  background-color: #ffe2c6;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #333;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.hero strong {
+  color: #ff4321;
+}
+
+.hero p {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.hero-buttons button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero .start {
+  background-color: #ff4321;
+  color: white;
+  border: none;
+}
+
+.hero .explore {
+  background-color: white;
+  color: #ff4321;
+  border: 2px solid #ff4321;
+}
+
+.hero-buttons button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 87, 34, 0.2);
+  color: white;
+  background-color: #ff4321;
+}
+
+/* Icons below hero */
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.icons div {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.icons i {
+  font-size: 1.5rem;
+  color: #ff5722;
+  margin-bottom: 5px;
+  transition: transform 0.3s ease;
+}
+
+.icons div:hover i {
+  transform: scale(1.2) rotate(5deg);
+}
+
+/* Actions Section */
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 60px 20px;
+  background-color: #fff;
+  animation: fadeUp 0.6s ease-in-out both;
+}
+
+.actions .card {
+  background-color: #fff7f3;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  width: 280px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.actions .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.actions i {
+  font-size: 2rem;
+  color: #ff5722;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.actions .card:hover i {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.actions h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.actions p {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.actions button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.actions .orange {
+  background-color: #ff5722;
+  color: white;
+}
+
+.actions .red {
+  background-color: #f44336;
+  color: white;
+}
+
+.actions .yellow {
+  background-color: #ffca28;
+  color: #333;
+}
+
+/* Featured Section */
+.featured {
+  padding: 60px 20px;
+  background-color: #fff;
+  text-align: center;
+  animation: fadeUp 0.6s ease-in-out both;
+}
+
+.featured h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.featured p {
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.story-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.story {
+  width: 280px;
+  padding: 20px;
+  background-color: #fff7f3;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.story .tag {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #ff5722;
+  color: white;
+  font-size: 0.75rem;
+  padding: 2px 10px;
+  border-radius: 15px;
+}
+
+.story h4 {
+  font-size: 1rem;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.story p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.story span {
+  display: block;
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.story .read-more {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.story .read-more:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 87, 34, 0.2);
+}
+
+/* Footer */
+footer {
+  background-color: #fff2ed;
+  text-align: center;
+  padding: 40px 20px;
+  animation: fadeUp 0.6s ease-in-out both;
+}
+
+footer h3 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+footer .stats {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+footer .stats div {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+footer .stats strong {
+  font-size: 1.5rem;
+  color: #ff5722;
+}
+
+/* Fade-in animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Additional styles for responsiveness and animation */
+
+/* Button animations */
+.buttons .login,
+.buttons .join {
+  transition: all 0.3s ease;
+}
+
+.buttons .login:hover,
+.buttons .join:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 87, 34, 0.2);
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    margin-top: 10px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .buttons .login,
+  .buttons .join {
+    width: 100%;
+    text-align: center;
+  }
+
+  .icons {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .story-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  footer .stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+
+
