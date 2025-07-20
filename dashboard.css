@@ -11,6 +11,8 @@ body {
   color: #333;
 }
 
+
+
 /* Header */
 header {
   display: flex;
@@ -106,6 +108,8 @@ nav a:hover {
   color: white;
   transform: scale(1.05);
 }
+
+
 
 /* Dashboard Main */
 .dashboard {
