@@ -22,7 +22,7 @@
       <a href="dashboard.php">Dashboard</a>
       <a href="explore.php">Explore</a>
       <a href="post.php">Share Story</a>
-     
+          <a href="message.php">Community</a>
     
     
     </nav>
@@ -53,7 +53,7 @@
         <i class="fa-solid fa-users"></i>
         <h3>Community</h3>
         <p>Connect with fellow cultural enthusiasts</p>
-        <button class="brown">View Community</button>
+         <a href="message.php"> <button class="brown">View Community</button> </a>
       </div>
     </section>
 

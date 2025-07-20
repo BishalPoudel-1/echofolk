@@ -18,11 +18,12 @@
       <a href="dashboard.php">Dashboard</a>
       <a href="explore.php">Explore</a>
       <a href="post.php">Share Story</a>
+           <a href="message.php">Community</a>
      
     </nav>
   <div class="buttons">
-    <button class="login">Login</button>
-    <button class="join">Join Now</button>
+      <a href="login.php"><button class="login">Login</button></a>
+      <a href="register.php"><button class="join">Join Now</button></a>
   </div>
 </header>
 

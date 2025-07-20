@@ -306,6 +306,7 @@
       <a href="dashboard.php">Dashboard</a>
       <a href="explore.php">Explore</a>
       <a href="post.php">Share Story</a>
+           <a href="message.php">Community</a>
     </nav>
     <div class="user-info">
       Welcome, Demo User <button class="logout">Logout</button>
