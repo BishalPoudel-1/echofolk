@@ -69,7 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
   </nav>
   <div class="user-info">
    
-    <button class="logout"><i class="fa-solid fa-user"></i> <?= htmlspecialchars($_SESSION['user']['name']) ?></button>
+      <a href="profile.php" class="logout" style="text-decoration: none;">
+            <i class="fa-solid fa-user"></i> <?= htmlspecialchars($_SESSION['user']['name']) ?>
+        </a>
     <form method="POST" action="logout.php" style="display: inline;">
       <button type="submit" class="logout">Logout</button>
     </form>

@@ -1,3 +1,18 @@
+<?php
+session_start();
+require_once 'config.php'; // Make sure this connects with your DB via PDO
+
+if (!isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit;
+}
+$userName = $_SESSION['user']['name'];
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,19 +26,25 @@
 
 <header>
   <a href="index.php" class="logo-container">
-    <div class="logo-icon"><i class="fa-solid fa-book-open"></i></div>
-    <span class="logo-text">EchoFolk</span>
+    <div class="logo-container">
+      <div class="logo-icon"><i class="fa-solid fa-book-open"></i></div>
+      <span class="logo-text">EchoFolk</span>
+    </div>
   </a>
- <nav>
-      <a href="dashboard.php">Dashboard</a>
-      <a href="explore.php">Explore</a>
-      <a href="post.php">Share Story</a>
-           <a href="message.php">Community</a>
-     
-    </nav>
-  <div class="buttons">
-      <a href="login.php"><button class="login">Login</button></a>
-      <a href="register.php"><button class="join">Join Now</button></a>
+  <nav>
+    <a href="dashboard.php">Dashboard</a>
+    <a href="explore.php">Explore</a>
+    <a href="post.php">Share Story</a>
+    <a href="message.php">Community</a>
+  </nav>
+  <div class="user-info">
+   
+      <a href="profile.php" class="logout" style="text-decoration: none;">
+            <i class="fa-solid fa-user"></i> <?= htmlspecialchars($userName) ?>
+        </a>
+    <form method="POST" action="logout.php" style="display: inline;">
+      <button type="submit" class="logout">Logout</button>
+    </form>
   </div>
 </header>
 
@@ -44,63 +65,102 @@
 </section>
 
 <section class="story-grid">
-  <div class="story-card">
-    <div class="image-placeholder"></div>
-    <div class="story-content">
-      <div class="meta">
-        <span><i class="fa-solid fa-location-dot"></i> India</span>
-        <span><i class="fa-solid fa-calendar"></i> 1/15/2024</span>
-      </div>
-      <h3>Diwali: Festival of Lights in India</h3>
-      <p>Experience the joy and warmth of Diwali, one of India's most celebrated festivals. From lighting diyas to shari...</p>
-      <div class="tags">
-        <span>festival</span><span>lights</span><span>tradition</span>
-      </div>
-      <div class="footer">
-        <span>by Priya Sharma</span>
-        <span><i class="fa-regular fa-heart"></i> 45</span>
-      </div>
-    </div>
-  </div>
+<?php
+$stmt = $pdo->prepare("SELECT s.*, u.name AS author_name FROM stories s JOIN users u ON s.user_id = u.id ORDER BY s.event_date DESC");
+$stmt->execute();
+$stories = $stmt->fetchAll();
 
+if ($stories):
+  foreach ($stories as $story):
+    $image = $story['image_path'] ?? 'https://via.placeholder.com/320x160?text=Image';
+    $tags = array_filter(array_map('trim', explode(',', $story['tags'])));
+    $isVerified = $story['verified'] == 1;
+?>
   <div class="story-card">
-    <div class="image-placeholder"></div>
+    <div class="image-placeholder" style="background-image: url('<?= htmlspecialchars($image) ?>');"></div>
     <div class="story-content">
       <div class="meta">
-        <span><i class="fa-solid fa-location-dot"></i> Japan</span>
-        <span><i class="fa-solid fa-calendar"></i> 1/10/2024</span>
+        <span><i class="fa-solid fa-location-dot"></i> <?= htmlspecialchars($story['country']) ?></span>
+        <span><i class="fa-solid fa-calendar"></i> <?= htmlspecialchars($story['event_date']) ?: 'N/A' ?></span>
       </div>
-      <h3>Cherry Blossom Season in Japan</h3>
-      <p>The magical time of Sakura blooming across Japan. Join families and friends as they gather under the pink petals...</p>
-      <div class="tags">
-        <span>nature</span><span>tradition</span><span>spring</span>
-      </div>
-      <div class="footer">
-        <span>by Yuki Tanaka</span>
-        <span><i class="fa-regular fa-heart"></i> 62</span>
-      </div>
-    </div>
-  </div>
 
-  <div class="story-card">
-    <div class="image-placeholder"></div>
-    <div class="story-content">
-      <div class="meta">
-        <span><i class="fa-solid fa-location-dot"></i> Mexico</span>
-        <span><i class="fa-solid fa-calendar"></i> 1/8/2024</span>
-      </div>
-      <h3>Day of the Dead Celebrations in Mexico</h3>
-      <p>Día de los Muertos is a beautiful tradition where we honor and remember our departed loved ones...</p>
+<h3>
+  <?= htmlspecialchars($story['title']) ?>
+  <?php if ($isVerified): ?>
+    <span class="verified-badge verified">✔ Verified</span>
+  <?php else: ?>
+    <span class="verified-badge not-verified">✖ Not Verified</span>
+  <?php endif; ?>
+</h3>
+
+
+      <p><?= htmlspecialchars(substr($story['body'], 0, 100)) ?>...</p>
       <div class="tags">
-        <span>festival</span><span>family</span><span>remembrance</span>
+        <?php foreach ($tags as $tag): ?>
+          <span><?= htmlspecialchars($tag) ?></span>
+        <?php endforeach; ?>
       </div>
       <div class="footer">
-        <span>by Carlos Rodriguez</span>
-        <span><i class="fa-regular fa-heart"></i> 38</span>
+        <span>by <?= htmlspecialchars($story['author_name']) ?></span>
+       <?php
+$liked = isset($_SESSION['liked_stories']) && in_array($story['id'], $_SESSION['liked_stories']);
+?>
+<span class="like-btn <?= $liked ? 'liked' : '' ?>" data-id="<?= $story['id'] ?>">
+  <i class="<?= $liked ? 'fa-solid' : 'fa-regular' ?> fa-heart"></i>
+  <span class="like-count"><?= $story['likes'] ?></span>
+</span>
+
+
       </div>
     </div>
   </div>
+<?php
+  endforeach;
+else:
+  echo "<p>No stories submitted yet.</p>";
+endif;
+?>
 </section>
+
+
+
+<script>
+document.querySelectorAll('.like-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const storyId = btn.getAttribute('data-id');
+
+    fetch('like_story.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: 'story_id=' + encodeURIComponent(storyId)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.likes !== undefined) {
+        btn.querySelector('.like-count').textContent = data.likes;
+
+        const icon = btn.querySelector('i');
+        btn.classList.toggle('liked');
+
+        if (data.status === 'liked') {
+          icon.classList.remove('fa-regular');
+          icon.classList.add('fa-solid');
+        } else {
+          icon.classList.remove('fa-solid');
+          icon.classList.add('fa-regular');
+        }
+      } else {
+        alert(data.error || 'Failed to update like');
+      }
+    })
+    .catch(() => alert('Request failed'));
+  });
+});
+</script>
+
+
 
 </body>
 </html>

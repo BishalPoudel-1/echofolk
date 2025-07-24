@@ -54,14 +54,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Only insert if no upload errors
     if (!$popupMessage) {
-        $stmt = $pdo->prepare("
-            INSERT INTO stories (user_id, title, body, country, event_date, image_path, tags)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        ");
+       $stmt = $pdo->prepare("
+    INSERT INTO stories (user_id, title, body, country, event_date, image_path, tags, verified)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+");
 
-        $success = $stmt->execute([
-            $userId, $title, $body, $country, $eventDate, $imagePath, $tags
-        ]);
+$success = $stmt->execute([
+    $userId, $title, $body, $country, $eventDate, $imagePath, $tags, 0  // 0 = Not Verified
+]);
+
 
         if ($success) {
             $popupMessage = 'Your story has been published!';
@@ -117,24 +118,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
   <?php endif; ?>
 
-  <header>
-    <a href="index.php" class="logo-container">
+<header>
+  <a href="index.php" class="logo-container">
+    <div class="logo-container">
       <div class="logo-icon"><i class="fa-solid fa-book-open"></i></div>
       <span class="logo-text">EchoFolk</span>
-    </a>
-    <nav>
-      <a href="dashboard.php">Dashboard</a>
-      <a href="explore.php">Explore</a>
-      <a href="post.php">Share Story</a>
-      <a href="message.php">Community</a>
-    </nav>
-    <div class="user-info">
-     <button class="logout"><i class="fa-solid fa-user"></i> <?= $userName ?></button>
-      <form method="POST" action="logout.php" style="display:inline;">
-        <button class="logout">Logout</button>
-      </form>
     </div>
-  </header>
+  </a>
+  <nav>
+    <a href="dashboard.php">Dashboard</a>
+    <a href="explore.php">Explore</a>
+    <a href="post.php">Share Story</a>
+    <a href="message.php">Community</a>
+  </nav>
+  <div class="user-info">
+   
+      <a href="profile.php" class="logout" style="text-decoration: none;">
+            <i class="fa-solid fa-user"></i> <?= htmlspecialchars($userName) ?>
+        </a>
+    <form method="POST" action="logout.php" style="display: inline;">
+      <button type="submit" class="logout">Logout</button>
+    </form>
+  </div>
+</header>
 
   <h1 class="fade-in-up">Share Your Cultural Story</h1>
   <p class="subtitle fade-in-up">Tell the world about your traditions, festivals, and cultural experiences</p>

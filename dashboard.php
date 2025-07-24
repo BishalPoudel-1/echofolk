@@ -78,7 +78,9 @@ if ($user['role'] !== 'user') {
   </nav>
   <div class="user-info">
    
-    <button class="logout"><i class="fa-solid fa-user"></i> <?= htmlspecialchars($userName) ?></button>
+     <a href="profile.php" class="logout" style="text-decoration: none;">
+            <i class="fa-solid fa-user"></i> <?= htmlspecialchars($userName) ?>
+        </a>
     <form method="POST" action="logout.php" style="display: inline;">
       <button type="submit" class="logout">Logout</button>
     </form>
@@ -113,7 +115,7 @@ if ($user['role'] !== 'user') {
   <section class="mystories">
     <h2><i class="fa-solid fa-book-open-reader"></i> My Cultural Stories</h2>
     <div class="empty">
-      <i class="fa-regular fa-book-open"></i>
+     <i class="fa-regular fa-folder-open"></i>
       <p class="empty-msg">No stories yet</p>
       <p class="hint">Start sharing your cultural experiences with the world!</p>
       <a href="post.php"><button class="red">Share Your First Story</button> </a>

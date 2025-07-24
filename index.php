@@ -1,33 +1,58 @@
+<?php
+// Start the session to check for login status
+session_start();
+
+// Check if a user is logged in and store their data
+$loggedInUser = $_SESSION['user'] ?? null;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>EchoFolk</title>
-  <link rel="stylesheet" href="styles.css">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+ <style>
+      /* Add styles for the logged-in user info to match your other pages */
+      .user-info { display: flex; align-items: center; gap: 15px; }
+      .logout { background: #fff; border: 1px solid #ff5722; padding: 6px 12px; border-radius: 6px; color: #ff5722; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.3s ease; }
+      .logout:hover { background: #ff5722; color: white;  transform: scale(1.05); }
+   </style>
+
+
 </head>
 <body>
   <header>
+
     <a href="index.php" class="logo-container">
-  <div class="logo-icon">
-    <i class="fa-solid fa-book-open"></i>
-  </div>
-  <span class="logo-text">EchoFolk</span>
-</a>
+      <div class="logo-icon">
+        <i class="fa-solid fa-book-open"></i>
+      </div>
+      <span class="logo-text">EchoFolk</span>
+    </a>
 
     <nav>
       <a href="dashboard.php">Dashboard</a>
       <a href="explore.php">Explore</a>
       <a href="post.php">Share Story</a>
        <a href="message.php">Community</a>
-     
     </nav>
-    <div class="buttons">
-      <button class="login"><a href ="login.php">Login </a></button>
-      <button class="join"><a href ="register.php">Join Now </a> </button>
+    
+    <div class="user-info">
+        <?php if ($loggedInUser): ?>
+            <a href="profile.php" class="logout" style="text-decoration: none;">
+                <i class="fa-solid fa-user"></i> <?= htmlspecialchars($loggedInUser['name']) ?>
+            </a>
+            <form method="POST" action="logout.php" style="display: inline;">
+                <button type="submit" class="logout">Logout</button>
+            </form>
+        <?php else: ?>
+            <a href="login.php" class="logout">Login</a>
+            <a href="register.php" class="join" style="background-color: #f97316; color: white; padding: 7px 13px; border-radius: 6px; text-decoration: none; font-weight: 600;">Join Now</a>
+        <?php endif; ?>
     </div>
   </header>
 

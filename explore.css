@@ -1,79 +1,11 @@
 body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(to bottom, #fff7f3, #ffece5);
+background: linear-gradient(to bottom right, #fff3ed, #ffe9df);
   color: #333;
   margin: 0;
   padding: 0;
 }
 
-/* Header */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  background: white;
-  border-bottom: 1px solid #eee;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  gap: 10px;
-}
-
-.logo-icon {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(to bottom right, #f97316, #ef4444);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo-icon i {
-  color: white;
-}
-
-.logo-text {
-  font-size: 1.5rem;
-  font-weight: bold;
-  background: linear-gradient(to right, #f97316, #ef4444);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-nav a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-}
-
-.buttons .login,
-.buttons .join {
-  padding: 8px 16px;
-  font-weight: 600;
-  border-radius: 6px;
-  margin-left: 10px;
-  border: 2px solid #ff5722;
-  background: white;
-  color: #ff5722;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.buttons .join {
-  background: #ff5722;
-  color: white;
-  border: none;
-}
-
-.buttons .login:hover {
-  background: #ff5722;
-  color: white;
-}
 
 /* Explore Section */
 .explore-hero {
@@ -259,23 +191,17 @@ button:hover,
   color: #ff5722;
 }
 
-
-/* Navbar Container */
+/* Header */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
   padding: 16px 40px;
   background-color: #fff;
   border-bottom: 1px solid #eee;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.03);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  flex-wrap: wrap;
 }
 
-/* Logo */
 .logo-container {
   display: flex;
   align-items: center;
@@ -284,95 +210,81 @@ header {
 }
 
 .logo-icon {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   background: linear-gradient(to bottom right, #f97316, #ef4444);
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.logo-icon:hover {
+  transform: scale(1.1) rotate(-5deg);
 }
 
 .logo-icon i {
   color: white;
-  font-size: 18px;
 }
 
 .logo-text {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  background: linear-gradient(to right, #f97316, #ef4444);
+  background: linear-gradient(to right, #ea580c, #dc2626);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Nav Links */
-nav {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-}
-
 nav a {
+  margin: 0 10px;
   text-decoration: none;
   font-weight: 500;
   color: #333;
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.3s;
 }
 
 nav a::after {
-  content: '';
+  content: "";
   position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 0%;
+  width: 0;
   height: 2px;
-  background: #ff5722;
+  background-color: #ff5722;
+  left: 0;
+  bottom: -3px;
   transition: width 0.3s ease;
-}
-
-nav a:hover {
-  color: #ff5722;
 }
 
 nav a:hover::after {
   width: 100%;
 }
 
-/* Buttons in Navbar */
-.buttons {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.buttons .login,
-.buttons .join {
-  padding: 8px 16px;
-  font-weight: 600;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border: 2px solid #ff5722;
-  background-color: white;
+nav a:hover {
   color: #ff5722;
 }
 
-.buttons .login:hover {
-  background-color: #ff5722;
-  color: white;
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.buttons .join {
-  background-color: #ff5722;
-  color: white;
-  border: none;
+.logout {
+  background: #fff;
+  border: 1px solid #ff5722;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: #ff5722;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.buttons .join:hover {
-  background-color: #e64a19;
+.logout:hover {
+  background: #ff5722;
+  color: white;
+  transform: scale(1.05);
 }
 
 /* Responsive Navbar */
@@ -401,3 +313,44 @@ nav a:hover::after {
   }
 }
 
+
+
+.verified-badge {
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-left: 8px;
+}
+
+.verified {
+  background-color: #e8f5e9;
+  color: #4caf50;
+}
+
+.not-verified {
+  background-color: #ffebee;
+  color: #f44336;
+}
+
+
+
+.like-btn {
+  cursor: pointer;
+  color: #f44336;
+  font-weight: bold;
+}
+
+.like-btn:hover {
+  transform: scale(1.1);
+}
+
+.like-btn {
+  cursor: pointer;
+  color: #f44336;
+  font-weight: bold;
+}
+
+.like-btn.liked i {
+  color: #f44336;
+}

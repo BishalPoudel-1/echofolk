@@ -17,3 +17,22 @@ try {
     die("Connection failed: " . $e->getMessage());
 }
 ?>
+
+<?php
+// Inside your config.php file... add this function at the end.
+
+function log_activity($pdo, $action, $description) {
+    // Check if an admin is logged in to get their details
+    $admin_id = $_SESSION['user']['id'] ?? null;
+    $admin_name = $_SESSION['user']['name'] ?? null;
+
+    try {
+        $stmt = $pdo->prepare(
+            "INSERT INTO activity_log (admin_id, admin_name, action, description) VALUES (?, ?, ?, ?)"
+        );
+        $stmt->execute([$admin_id, $admin_name, $action, $description]);
+    } catch (PDOException $e) {
+        // In a real application, you might handle this error more gracefully
+        error_log("Failed to log activity: " . $e->getMessage());
+    }
+}

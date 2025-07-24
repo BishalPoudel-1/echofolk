@@ -42,8 +42,8 @@ header {
   transition: transform 0.3s ease;
 }
 
-.logo-icon:hover {
-  transform: scale(1.1) rotate(-5deg);
+.logo-container:hover .logo-icon {
+  transform: scale(1.1) rotate(-3deg);
 }
 
 .logo-icon i {
